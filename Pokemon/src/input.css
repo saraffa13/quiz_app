@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    /* Add 3D transform styles */
+    .transform-style-preserve-3d {
+      transform-style: preserve-3d;
+    }
+    .perspective {
+      perspective: 1000px;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    .group-hover\:rotate-y-180:hover .pokemon-card {
+      transform: rotateY(180deg);
+    }
+  }
+  
