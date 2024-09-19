@@ -1,4 +1,5 @@
 const pokemonList = [];
+const pokemonListToBeShown = [];
 
 const fetchImages = document.getElementById("fetch");
 const pokemon_container = document.getElementById("pokemon_container");
@@ -31,7 +32,7 @@ fetchImages.addEventListener(
             })
             console.log(rectifiedDetails);
             pokemonList.push(...rectifiedDetails);
-            displayPokemon();
+            displayPokemon("","");
         } catch (err) {
             console.error(err);
         }
@@ -91,9 +92,19 @@ function createPokemonCard(name, imageUrl, type, abilities) {
     return container;
 }
 
-function displayPokemon() {
-    pokemonList.forEach((pokemonData) => {
-        pokemon_container.append(createPokemonCard(pokemonData.name, pokemonData.imageUrl,"x","y"));
+function displayPokemon(type, name) {
+    console.log(type);
+    if(type!=""){
+        console.log(type);
+        pokemonListToBeShown.splice(0,pokemonListToBeShown.length);
+        const newListToBeShown = pokemonList.filter((pokemon)=>pokemon.type===type);
+        pokemonListToBeShown.push(...newListToBeShown);
+    }else{
+        pokemonListToBeShown.push(...pokemonList);
+    }
+
+    pokemonListToBeShown.forEach((pokemonData) => {
+        pokemon_container.append(createPokemonCard(pokemonData.name, pokemonData.imageUrl,pokemonData.type,"y"));
     })
 }
 
