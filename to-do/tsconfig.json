@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",  // For React 17+ (use "react" for older versions)
+    "baseUrl": "./src",   // Helps VS Code resolve imports from the 'src' folder
+    "paths": {
+      "*": ["src/*"]      // Configures auto-import paths
+    },
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "exclude": ["node_modules", "dist"]
+}
