@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
 interface FormProps {
-  nameFetcher: (name: string) => void;
+  newTaskCreater: (name: string) => void;
   edit:boolean
   editValue:any
   fetchTheEditedValue:(n:string, index:number)=>void
 }
 
-const Form: React.FC<FormProps> = ({ nameFetcher, edit, editValue, fetchTheEditedValue }) => {
-  const [name, setName] = useState<string>(editValue.name || ''); // Set default as empty string
+const Form: React.FC<FormProps> = ({ newTaskCreater, edit, editValue, fetchTheEditedValue }) => {
+  const [name, setName] = useState<string>(editValue.name || ''); 
 
-  // Update the `name` state when `editValue` changes
   useEffect(() => {
     if (edit) {
-      setName(editValue.name); // Set the name when in edit mode
+      setName(editValue.name);
     }
-  }, [editValue, edit]); // Trigger when `editValue` or `edit` changes
+  }, [editValue, edit]); 
 
   const nameInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -24,11 +23,11 @@ const Form: React.FC<FormProps> = ({ nameFetcher, edit, editValue, fetchTheEdite
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (edit) {
-      fetchTheEditedValue(name, editValue.index); // Pass the edited task
+      fetchTheEditedValue(name, editValue.index); 
     } else {
-      nameFetcher(name); // Add a new task
+      newTaskCreater(name); 
     }
-    setName(''); // Clear input after submit
+    setName('');
   };
 
 
